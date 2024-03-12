@@ -12,6 +12,8 @@ from sklearn.linear_model import LinearRegression
 from sklearn import metrics
 from sklearn.model_selection import cross_val_score
 import statsmodels.api as sm
+import requests
+import openai
 
 # Crear la aplicación Dash
 app = dash.Dash(__name__, external_stylesheets=['/assets/styles.css'])
@@ -147,11 +149,21 @@ def update_selected_columns(n_clicks, contents, filename, selected_variables, in
             coef_table = html.Table([table_header] + table_rows)
             
             # Actualizar el texto de las columnas seleccionadas con los resultados
+            openai.api_type="azure"
+            openai.api_version = "2023-05-15"
+            prediction = openai.ChatCompletion.create(
+            api_key= '28cec4b0847a4434966dcbcb7d5de06e',
+            api_base="https://sinfonia.openai.azure.com/" ,
+            engine="sinfoniaOpenai",
+            temperature= 0.5,
+            max_tokens=200,
+            messages =[
+            {"role": "user", "content": "Usuario: supon que eres un experto en modelos de regresion toma estos datos y dame una corta opinion del modelo"+str(model.summary())}
+            ])
+            textoia=prediction['choices'][0]['message']['content']
             selected_columns_text = (
-                f'Punto de corte: {corte}\n'
-                f'Funciones de Pérdida del modelo: MAE: {loss[0]}, MSE :{loss[1]}, RMSE :{loss[2]} \n'
-                f'Resultados del análisis de varianza (ANOVA):\n{anova_text}'
-            )
+                f'El analisis del modelo por AI (GPT4) es el siguiente:{textoia}'
+                )
             
             # Generar gráficos con Plotly Express
             fig1 = px.scatter(x=y_test, y=y_pred, labels={'x': 'Valores reales', 'y': 'Prediccion del modelo'}, title='Regresion')
@@ -245,3 +257,4 @@ def crearmodelo(df, features, resp):
 
 if __name__ == '__main__':
     app.run_server("0.0.0",debug=True,port=8050)
+   
