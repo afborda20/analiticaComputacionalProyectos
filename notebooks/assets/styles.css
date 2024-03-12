@@ -1,0 +1,149 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, rgba(193, 248, 84, 0.4), rgba(51, 89, 241, 0.4));
+    background-blend-mode: soft-light;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 4rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
+}
+
+#model-title {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+/* Estilos para el dcc.Upload */
+#upload-data {
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    border-width: 1px;
+    border-style: dashed;
+    border-radius: 10px;
+    text-align: center;
+    margin: 10px;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el componente */
+    transition: background-color 0.3s ease-in-out; /* Agrega una transición suave al color de fondo */
+    position: relative; /* Establece la posición relativa para permitir el posicionamiento absoluto del texto */
+}
+
+#upload-data:hover {
+    background-color: #f0f0f0; /* Cambia el color de fondo al pasar sobre el componente */
+}
+
+#upload-data[selected="true"] {
+    border-color: transparent; /* Oculta el borde cuando un archivo está seleccionado */
+}
+
+#upload-data[selected="true"]:hover {
+    background-color: #f0f0f0; /* Cambia el color de fondo al pasar sobre el componente */
+}
+
+#upload-data::after {
+    content: attr(data-text); /* Utiliza el atributo 'data-text' para mostrar el texto */
+    color: green; /* Cambia el color del texto a verde */
+    position: absolute; /* Posiciona el texto en relación al componente */
+    bottom: 10px; /* Alinea el texto en la parte inferior */
+    left: 50%; /* Centra el texto horizontalmente */
+    transform: translateX(-50%); /* Centra el texto horizontalmente */
+}
+/* Estilos para el checklist */
+#columns-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#columns-list label {
+    display: flex; /* Para alinear verticalmente el círculo y el texto */
+    align-items: center; /* Centrar verticalmente */
+    cursor: pointer;
+    margin-bottom: 0.5rem; /* Espacio entre las opciones */
+}
+
+#columns-list input[type="checkbox"] {
+    width: 1rem; /* Tamaño más pequeño del círculo */
+    height: 1rem;
+    border-radius: 50%;
+    appearance: none; /* Eliminar la apariencia predeterminada del checkbox */
+    border: 2px solid #ccc; /* Borde del checkbox */
+    background-color: transparent; /* Fondo transparente */
+    cursor: pointer;
+    margin-right: 0.5rem; /* Espacio entre el círculo y el texto */
+    margin-top: 0.25rem; /* Centrar verticalmente el círculo */
+}
+
+#columns-list input[type="checkbox"]:checked {
+    border-color: transparent; /* Si está seleccionado, no mostrar el borde */
+}
+
+#columns-list input[type="checkbox"]::after {
+    content: '';
+    display: block;
+    width: 0.5rem; /* Tamaño del círculo interior más pequeño */
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: red; /* Color del círculo por defecto */
+    transition: background-color 0.3s ease-in-out;
+}
+
+#columns-list input[type="checkbox"]:checked::after {
+    background-color: green; /* Cambiar a verde cuando está seleccionado */
+}
+/* Estilos para la tabla */
+table {
+    width: 100%;
+    border: 1px solid #000;
+}
+
+th, td {
+    width: 25%;
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid #000;
+    border-collapse: collapse;
+    padding: 0.3em;
+    caption-side: bottom;
+}
+
+caption {
+    padding: 0.3em;
+    color: #fff;
+    background: #000;
+}
+
+th {
+    background: #eee;
+}
+/* styles.css */
+/* Estilos para el contenedor de la tabla y la gráfica */
+#table-and-graph-container {
+    display: flex; /* Utilizamos flexbox para alinear horizontalmente */
+    justify-content: space-between; /* Distribuimos el espacio entre los elementos */
+}
+
+/* Estilos para la tabla */
+#table-container {
+    width: 48%; /* Establecemos un ancho para la tabla */
+}
+
+/* Estilos para la gráfica */
+#graph-container {
+    width: 48%; /* Establecemos un ancho para la gráfica */
+}
