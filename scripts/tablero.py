@@ -244,4 +244,4 @@ def crearmodelo(df, features, resp):
     return model,corte, coef, loss, anova, y_test, y_pred
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server("0.0.0",debug=True,port=8050)
