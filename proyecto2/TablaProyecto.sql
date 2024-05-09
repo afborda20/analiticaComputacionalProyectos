@@ -2,7 +2,7 @@ BEGIN;
 SET client_encoding = 'LATIN1';
 
 -- Create the new table
-CREATE TABLE credit_info (
+CREATE TABLE clients (
     ID SERIAL PRIMARY KEY,
     LIMIT_BAL integer,
     SEX integer,
